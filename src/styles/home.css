@@ -1,0 +1,67 @@
+.home {
+  text-align: center;
+  color: white;
+  animation: fadeIn 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 90vh; /* Prend 90% de la hauteur de l'écran */
+  position: relative;
+  overflow: hidden; /* Assure que rien ne dépasse */
+}
+
+.bgImg {
+  width: 100%;
+  height: 100%; /* Occupe toute la hauteur */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  object-fit: cover; /* Mode cover pour ajuster l'image */
+  opacity: 0.8; /* Transparence pour l'image */
+}
+
+.title_section {
+  z-index: 1; /* Assure que le texte est au-dessus de l'image */
+  background: var(--primary-color);
+  width: 100%;
+  height: auto; /* Adapte à la taille du contenu */
+  min-height: 500px; /* Taille minimale pour garantir la lisibilité */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Ajout d'un espace pour le contenu */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ombre pour séparer visuellement du fond */
+}
+
+.home-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: white; /* Assure que le texte reste visible */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ajoute un effet d'ombre pour la lisibilité */
+}
+
+.home-description {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: white; /* Texte blanc */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Meilleure lisibilité */
+}
+
+.home-btn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.home-btn:hover {
+  background-color: var(--primary-color);
+  transform: scale(1.05);
+}

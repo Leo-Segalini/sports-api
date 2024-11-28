@@ -1,0 +1,68 @@
+/* Styles de la barre de navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed; /* Barre flottante */
+    top: 40px; /* Centré à 40px du haut */
+    left: 50%; /* Centré horizontalement */
+    transform: translateX(-50%); /* Ajustement pour centrer */
+    width: 80%; /* Prend 80% de l'écran */
+    padding: 15px 30px;
+    background-color: var(--primary-color); /* Couleur de fond */
+    color: #fff;
+    border-radius: 50px; /* Coins arrondis */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Effet d'ombre */
+    z-index: 1000; /* Toujours au-dessus du contenu */
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Logo à gauche */
+  .logo a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .logo img {
+    border-radius: 50%; /* Pour un logo rond, si nécessaire */
+  }
+  
+  /* Menu centré */
+  .navLinks {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Espacement entre les liens */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navLinks li a {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: uppercase;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .navLinks li a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      top: 20px; /* Ajuste la position pour mobile */
+      width: 90%; /* Réduit la largeur */
+      padding: 10px 20px;
+    }
+  
+    .navLinks {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+  

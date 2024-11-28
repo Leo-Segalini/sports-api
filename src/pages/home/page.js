@@ -1,16 +1,23 @@
 // src/pages/home/page.js
 import Link from "next/link";
-import "./home.css"; // Import du CSS local
+import Image from "next/image";
+import bgSport from "../../../public/background/background_accueil.webp";
 
 function Home() {
   return (
     <div className="home">
-      <h1 className="home-title">Bienvenue sur la plateforme des sports</h1>
-      <p className="home-description">Découvrez les sports et leurs détails en un clic.</p>
-      <Link href="/sports">
-        <button className="home-btn">Voir les sports</button>
-      </Link>
+      <Image src={bgSport} alt="Logo" className="bgImg" />
+      <div className="title_section">
+        <h1 className="home-title">Bienvenue sur la plateforme des sports</h1>
+        <p className="home-description">
+          Découvrez les sports et leurs détails en un clic.
+        </p>
+        <Link href="/sports">
+          <button className="home-btn">Voir les sports</button>
+        </Link>
+      </div>
     </div>
+
   );
 }
 

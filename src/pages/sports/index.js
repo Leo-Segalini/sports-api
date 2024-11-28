@@ -3,8 +3,6 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import "./sports.css";
-import "../../app/globals.css";
 
 export default function SportsPage() {
   const [sports, setSports] = useState([]);
