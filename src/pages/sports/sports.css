@@ -1,0 +1,27 @@
+/* src/pages/sports/sports.css */
+
+.sports-page {
+    padding: 20px;
+    animation: fadeIn 0.8s ease-in-out;
+  }
+  
+  .sports-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .filters input {
+    padding: 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 1rem;
+  }
+  
