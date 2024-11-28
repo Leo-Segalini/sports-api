@@ -1,7 +1,7 @@
 /* Styles de la barre de navigation */
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: fixed; /* Barre flottante */
     top: 40px; /* Centré à 40px du haut */
@@ -15,17 +15,18 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Effet d'ombre */
     z-index: 1000; /* Toujours au-dessus du contenu */
     animation: fadeIn 0.5s ease-in-out;
+    height: 50px;
   }
   
   /* Logo à gauche */
+  .logo {
+    position: absolute;
+    left: 20px;
+  }
+
   .logo a {
     display: flex;
     align-items: center;
-    gap: 10px;
-  }
-  
-  .logo img {
-    border-radius: 50%; /* Pour un logo rond, si nécessaire */
   }
   
   /* Menu centré */
@@ -33,35 +34,36 @@
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 30px; /* Espacement entre les liens */
+    gap: 50px; /* Espacement entre les liens */
     margin: 0;
     padding: 0;
+    flex-wrap: nowrap;
   }
   
   .navLinks li a {
     color: #fff;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 500;
-    text-transform: uppercase;
     transition: color 0.3s ease, transform 0.3s ease;
+    padding: 15px 25px;
   }
   
   .navLinks li a:hover {
-    color: var(--accent-color);
     transform: translateY(-3px);
+    background-color: var(--accent-color);
+    border-radius: 50px;
   }
   
   /* Responsive design */
   @media (max-width: 768px) {
     .navbar {
-      flex-direction: column;
+      flex-direction: row;
       top: 20px; /* Ajuste la position pour mobile */
-      width: 90%; /* Réduit la largeur */
       padding: 10px 20px;
     }
   
     .navLinks {
-      flex-direction: column;
+      flex-direction: row;
       gap: 15px;
     }
   }
