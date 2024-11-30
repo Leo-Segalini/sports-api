@@ -1,5 +1,3 @@
-"use client";
-
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
@@ -12,6 +10,7 @@ import "../../styles/naviguation.css";
 export default function SportDetails() {
   const [sport, setSport] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showBettingInfo, setShowBettingInfo] = useState(false);
   const router = useRouter();
   const { slug } = router.query;
 
@@ -43,10 +42,7 @@ export default function SportDetails() {
     return (
       <div className="no-sport">
         <p>Aucun sport trouvé.</p>
-        <button
-          className="back-btn"
-          onClick={() => router.push("/sports")}
-        >
+        <button className="back-btn" onClick={() => router.push("/sports")}>
           Retour à la liste
         </button>
       </div>
@@ -54,29 +50,90 @@ export default function SportDetails() {
   }
 
   return (
-    <div className="sport-details">
-      <button className="back-btn" onClick={() => router.push("/sports")}>
-        ← Retour
-      </button>
-      <h1 className="sport-name">{sport.name}</h1>
-      <div className="details-grid">
-        <div className="detail-item">
-          <strong>Région :</strong> {sport.region}
+    <div className="section_all">
+      <div className="sport-details-container">
+        <button className="back-btn" onClick={() => router.push("/sports")}>
+          ← Retour
+        </button>
+        <div
+          className="sport-image"
+          style={{
+            backgroundImage: `url(${
+              sport.image_sport ||
+              "https://img.freepik.com/photos-gratuite/outils-sport_53876-138077.jpg"
+            })`,
+          }}
+        >
+          <h1 className="sport-name">{sport.name}</h1>
+          <a
+            className="federation-link"
+            href={sport.federation_link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button className="federation-btn">Lien vers la fédération</button>
+          </a>
         </div>
-        <div className="detail-item">
-          <strong>Durée du match :</strong> {sport.match_duration}
-        </div>
-        <div className="detail-item">
-          <strong>Moyenne des scores :</strong> {sport.score_average}
-        </div>
-        <div className="detail-item">
-          <strong>Joueurs requis :</strong> {sport.players_count}
-        </div>
-        <div className="detail-item">
-          <strong>Calcul des points :</strong> {sport.points_calculation}
-        </div>
-        <div className="detail-item">
-          <strong>Règles :</strong> {sport.rules}
+
+        <div className="sport-details">
+          <div className="details-grid">
+            <div className="detail-item-0">
+              <strong>Région :</strong> {sport.region}
+            </div>
+            <div className="detail-item-0">
+              <strong>Durée du match :</strong> {sport.match_duration}
+            </div>
+            <div className="detail-item-1">
+              <strong>Joueurs requis :</strong> {sport.players_count}
+            </div>
+            <div className="detail-item-1">
+              <strong>Calcul des points :</strong> {sport.points_calculation}
+            </div>
+            <div className="detail-item-1">
+              <strong>Moyenne des scores :</strong> {sport.score_average}
+            </div>
+            <div className="detail-item-0">
+              <strong>Règles :</strong> {sport.rules}
+            </div>
+            <div className="detail-item-0">
+              <strong>Description :</strong> {sport.description}
+            </div>
+            <div className="detail-item-0">
+              <strong>Équipes ou joueurs célèbres :</strong>{" "}
+              {sport.top_teams_or_players}
+            </div>
+            <div className="detail-item-0">
+              <strong>Compétitions majeures :</strong> {sport.top_championships}
+            </div>
+          </div>
+
+          <div className="betting-section">
+            <button
+              className="toggle-betting-info"
+              onClick={() => setShowBettingInfo((prev) => !prev)}
+            >
+              {showBettingInfo
+                ? "Masquer les informations sur les paris"
+                : "Afficher les informations sur les paris"}
+            </button>
+
+            {showBettingInfo && (
+              <div className="betting-info">
+                <div className="betting-info-background">
+                  <div className="betting-details">
+                    <p className="warning">
+                      <strong>Avertissement :</strong> Les paris sportifs
+                      comportent des risques financiers.
+                    </p>
+                    <p>
+                      <strong>Conseils pour les paris :</strong>{" "}
+                      {sport.betting_tips}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
