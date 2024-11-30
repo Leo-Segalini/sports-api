@@ -3,12 +3,14 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Navigation from "@/components/naviguation";
+import Footer from "@/components/footer";
 
 import "../../styles/globals.css";
 import "../../styles/home.css";
 import "../../styles/sportDetails.css";
 import "../../styles/sports.css";
 import "../../styles/naviguation.css";
+import "../../styles/footer.css";
 
 export default function SportsPage() {
   const [sports, setSports] = useState([]);
@@ -79,6 +81,7 @@ export default function SportsPage() {
           <p className="no-results">Aucun sport trouvé.</p>
         )}
       </div>
+      <Footer />
     </div>
   );
 }
