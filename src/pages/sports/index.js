@@ -16,17 +16,21 @@ export default function SportsPage() {
   const [sports, setSports] = useState([]);
   const [search, setSearch] = useState("");
   const [regionFilter, setRegionFilter] = useState("");
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   useEffect(() => {
     async function fetchSports() {
       try {
+        setLoading(true); // Activation du loader
         const res = await fetch("/api/sports");
         if (!res.ok) throw new Error("Erreur de récupération des données");
         const data = await res.json();
         setSports(data);
       } catch (error) {
         console.error(error.message);
+      } finally {
+        setLoading(false); // Désactivation du loader
       }
     }
     fetchSports();
@@ -39,6 +43,14 @@ export default function SportsPage() {
         ? sport.region.toLowerCase().includes(regionFilter.toLowerCase())
         : true)
   );
+
+  if (loading) {
+    return (
+      <div className="loader-container">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="sports-page">

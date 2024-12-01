@@ -1,70 +1,81 @@
 /* Styles de la barre de navigation */
 .navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed; /* Barre flottante */
-    top: 40px; /* Centré à 40px du haut */
-    left: 50%; /* Centré horizontalement */
-    transform: translateX(-50%); /* Ajustement pour centrer */
-    width: 80%; /* Prend 80% de l'écran */
-    padding: 15px 30px;
-    background-color: var(--primary-color); /* Couleur de fond */
-    color: #fff;
-    border-radius: 50px; /* Coins arrondis */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Effet d'ombre */
-    z-index: 1000; /* Toujours au-dessus du contenu */
-    animation: fadeIn 0.5s ease-in-out;
-    height: 50px;
-  }
-  
-  /* Logo à gauche */
-  .logo {
-    position: absolute;
-    left: 20px;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed; /* Barre flottante */
+  top: 0; /* Initialement hors de l'écran */
+  left: 50%; /* Centré horizontalement */
+  transform: translate(-50%, -100%); /* Cache la barre hors de l'écran */
+  width: 80%; /* Prend 80% de l'écran */
+  padding: 15px 30px;
+  background-color: var(--primary-color); /* Couleur de fond */
+  color: #fff;
+  border-radius: 50px; /* Coins arrondis */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Effet d'ombre */
+  z-index: 1000; /* Toujours au-dessus du contenu */
+  animation: fadeInByTop 0.6s ease-in-out forwards; /* Animation */
+  height: 50px;
+}
 
-  .logo a {
-    display: flex;
-    align-items: center;
-  }
-  
-  /* Menu centré */
-  .navLinks {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 50px; /* Espacement entre les liens */
-    margin: 0;
-    padding: 0;
-    flex-wrap: nowrap;
-  }
-  
-  .navLinks li a {
-    color: #fff;
-    font-size: 22px;
-    font-weight: 500;
-    transition: color 0.3s ease, transform 0.3s ease;
-    padding: 15px 25px;
-  }
-  
-  .navLinks li a:hover {
-    transform: translateY(-3px);
-    background-color: var(--accent-color);
-    border-radius: 50px;
-  }
-  
-  /* Responsive design */
-  @media (max-width: 768px) {
-    .navbar {
+/* Logo à gauche */
+.logo {
+  position: absolute;
+  left: 20px;
+}
+
+.logo a {
+  display: flex;
+  align-items: center;
+}
+
+/* Menu centré */
+.navLinks {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 50px; /* Espacement entre les liens */
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+}
+
+.navLinks li a {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.3s ease;
+  padding: 15px 25px;
+}
+
+.navLinks li a:hover {
+  transform: translateY(-3px);
+  background-color: var(--accent-color);
+  border-radius: 50px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .navbar {
       flex-direction: row;
       top: 20px; /* Ajuste la position pour mobile */
       padding: 10px 20px;
-    }
-  
-    .navLinks {
+  }
+
+  .navLinks {
       flex-direction: row;
       gap: 15px;
-    }
   }
-  
+}
+
+/* Animation pour effet "fade by top" */
+@keyframes fadeInByTop {
+  0% {
+      transform: translate(-50%, -100%); /* Hors de l'écran */
+      opacity: 0; /* Complètement transparent */
+  }
+  100% {
+      transform: translate(-50%, 40px); /* Position finale */
+      opacity: 1; /* Complètement visible */
+  }
+}
