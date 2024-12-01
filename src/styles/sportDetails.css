@@ -1,3 +1,37 @@
+/*Loader spinner*/
+
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Fond semi-transparent */
+  z-index: 1000;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid var(--primary-color); /* Couleur principale */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
 /* Page des détails du sport */
 .section_all {
   height: 100vh;
@@ -28,7 +62,7 @@
   left: 10px;
   z-index: 50;
   padding: 12px 25px;
-  background-color: #3498db;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 6px;
@@ -39,7 +73,7 @@
 }
 
 .back-btn:hover {
-  background-color: #2980b9;
+  background-color: var(--primary-color);
   box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.2);
 }
 
@@ -92,19 +126,33 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.detail-item-0:hover, .detail-item-1:hover {
+.detail-item-2 {
+  width: 100%;
+  height: auto;
+  gap: 10px;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background-color: #ecf0f1;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-item-0:hover, .detail-item-1:hover, .detail-item-2:hover {
   transform: scale(1.05);
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.detail-item-0 strong, .detail-item-1 strong {
-  color: #3498db;
+.detail-item-0 strong, .detail-item-1 strong, .detail-item-2 strong {
+  color: var(--primary-color);
   font-weight: bold;
 }
 
 /* Bouton de lien fédération */
 .federation-btn {
-  background-color: #3498db;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 6px;
@@ -114,7 +162,7 @@
 }
 
 .federation-btn:hover {
-  background-color: #2980b9;
+  background-color: var(--primary-color);
 }
 
 /* Section des paris sportifs */
@@ -124,7 +172,7 @@
 }
 
 .toggle-betting-info {
-  background-color: #3498db;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   border-radius: 6px;
@@ -135,7 +183,7 @@
 }
 
 .toggle-betting-info:hover {
-  background-color: #2980b9;
+  background-color: var(--primary-color);
 }
 
 .betting-info {

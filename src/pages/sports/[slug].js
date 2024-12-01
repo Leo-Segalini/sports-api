@@ -35,7 +35,11 @@ export default function SportDetails() {
   }, [slug]);
 
   if (loading) {
-    return <div className="loading">Chargement en cours...</div>;
+    return (
+      <div className="loader-container">
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
   if (!sport) {
@@ -92,10 +96,10 @@ export default function SportDetails() {
             <div className="detail-item-1">
               <strong>Moyenne des scores :</strong> {sport.score_average}
             </div>
-            <div className="detail-item-0">
+            <div className="detail-item-2">
               <strong>Règles :</strong> {sport.rules}
             </div>
-            <div className="detail-item-0">
+            <div className="detail-item-2">
               <strong>Description :</strong> {sport.description}
             </div>
             <div className="detail-item-0">
