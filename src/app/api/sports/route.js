@@ -1,17 +1,39 @@
 // src/api/sport/route.js
-import { createClient } from '@supabase/supabase-js';
+import { NextResponse } from 'next/server';
+import { getSports } from '@/database/db';
 
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+export async function GET(request) {
+  try {
+    // Récupération des paramètres de pagination et de filtrage
+    const { searchParams } = new URL(request.url);
+    const page = parseInt(searchParams.get('page')) || 1;
+    const limit = parseInt(searchParams.get('limit')) || 10;
+    const search = searchParams.get('search') || '';
+    const region = searchParams.get('region') || '';
 
-export async function GET() {
-  const { data, error } = await supabase.from('sports').select('*');
+    // Validation des paramètres
+    if (page < 1) {
+      return NextResponse.json(
+        { error: "Le numéro de page doit être supérieur à 0" },
+        { status: 400 }
+      );
+    }
 
-  if (error) {
-    console.error("Erreur Supabase:", error);
-    return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+    if (limit < 1 || limit > 50) {
+      return NextResponse.json(
+        { error: "La limite doit être comprise entre 1 et 50" },
+        { status: 400 }
+      );
+    }
+
+    const result = await getSports({ page, limit, search, region });
+
+    return NextResponse.json(result);
+  } catch (error) {
+    console.error("Erreur inattendue:", error);
+    return NextResponse.json(
+      { error: "Une erreur inattendue s'est produite" },
+      { status: 500 }
+    );
   }
-
-  return new Response(JSON.stringify(data), { status: 200 });
 }

@@ -1,27 +1,41 @@
-import { createClient } from '@supabase/supabase-js';
-
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+import { NextResponse } from 'next/server';
+import { getSportBySlug } from '@/database/db';
 
 export async function GET(request, context) {
-  const { params } = context; // Contexte contient les params dynamiques
-  const slug = await params.slug; // Utilisez await ici
+  try {
+    const { params } = context;
+    const slug = params.slug;
 
-  if (!slug) {
-    return new Response(JSON.stringify({ error: "Slug requis" }), { status: 400 });
+    if (!slug) {
+      return NextResponse.json(
+        { error: "Le paramètre slug est requis" },
+        { status: 400 }
+      );
+    }
+
+    // Validation du slug (alphanumeric + tirets)
+    if (!/^[a-z0-9-]+$/.test(slug)) {
+      return NextResponse.json(
+        { error: "Format de slug invalide" },
+        { status: 400 }
+      );
+    }
+
+    const sport = await getSportBySlug(slug);
+
+    if (!sport) {
+      return NextResponse.json(
+        { error: "Sport non trouvé" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(sport);
+  } catch (error) {
+    console.error("Erreur inattendue:", error);
+    return NextResponse.json(
+      { error: "Une erreur inattendue s'est produite" },
+      { status: 500 }
+    );
   }
-
-  const { data, error } = await supabase
-    .from('sports')
-    .select('*')
-    .eq('slug', slug)
-    .single();
-
-  if (error) {
-    console.error("Erreur Supabase:", error);
-    return new Response(JSON.stringify({ error: error.message }), { status: 404 });
-  }
-
-  return new Response(JSON.stringify(data), { status: 200 });
 }
